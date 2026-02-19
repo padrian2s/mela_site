@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#16a34a">
+  <title>Mela Health — Benefits</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍏</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #16a34a;
+      --primary-light: #dcfce7;
+      --primary-dark: #15803d;
+      --text: #1a1a1a;
+      --text-secondary: #6b7280;
+      --bg: #f8faf9;
+      --surface: #ffffff;
+      --border: #e5e7eb;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .material-symbols-rounded {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Top banner */
+    .top-banner {
+      background: #fef3c7;
+      border-bottom: 1px solid #fde68a;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #92400e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .top-banner .material-symbols-rounded {
+      font-size: 16px;
+      color: #b45309;
+    }
+
+    /* Language toggle */
+    .lang-toggle {
+      position: fixed;
+      top: 46px;
+      right: 16px;
+      z-index: 100;
+      display: flex;
+      background: var(--surface);
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 120px;
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--bg) 100%);
+    }
+    .hero-icon {
+      margin-bottom: 16px;
+    }
+    .hero-icon .material-symbols-rounded {
+      font-size: 64px;
+      color: var(--primary);
+    }
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+    .hero .tagline {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .hero .name-origin {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .name-origin em {
+      color: var(--primary-dark);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    /* Hero Card */
+    .hero-card {
+      max-width: 360px;
+      margin: -60px auto 0;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+    .hero-card img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* Container */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section */
+    .section {
+      padding: 40px 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .section-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    /* Benefit cards */
+    .benefits-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .benefit-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .benefit-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-light);
+      border-radius: 12px;
+    }
+    .benefit-icon .material-symbols-rounded {
+      font-size: 24px;
+      color: var(--primary);
+    }
+    .benefit-content h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .benefit-content p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      gap: 20px;
+      counter-reset: step;
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      counter-increment: step;
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .step-content h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .step-content p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* Showcase */
+    .showcase {
+      padding: 24px 0 40px;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--primary-light) 50%, var(--bg) 100%);
+    }
+    .showcase .section-header { margin-bottom: 32px; }
+    .showcase-scroll {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 0 20px 16px;
+      scrollbar-width: none;
+    }
+    .showcase-scroll::-webkit-scrollbar { display: none; }
+    .showcase-item {
+      flex: 0 0 200px;
+      scroll-snap-align: center;
+      text-align: center;
+    }
+    .showcase-item img {
+      width: 200px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+      border: 3px solid var(--surface);
+    }
+    .showcase-caption {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .showcase-subcaption {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    @media (min-width: 600px) {
+      .showcase-scroll {
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow-x: visible;
+        padding: 0 32px 0;
+        gap: 28px;
+      }
+      .showcase-item { flex: 0 0 180px; }
+      .showcase-item img { width: 180px; }
+    }
+
+    @media (min-width: 960px) {
+      .showcase { padding: 24px 0 64px; }
+      .showcase-scroll {
+        gap: 36px;
+        padding: 0 40px;
+      }
+      .showcase-item { flex: 0 0 200px; }
+      .showcase-item img {
+        width: 200px;
+        transition: transform 0.3s;
+      }
+      .showcase-item img:hover { transform: translateY(-6px) scale(1.02); }
+      .showcase-caption { font-size: 14px; }
+      .showcase-subcaption { font-size: 13px; }
+    }
+
+    @media (min-width: 1200px) {
+      .showcase-item { flex: 0 0 220px; }
+      .showcase-item img { width: 220px; }
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      padding: 48px 20px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+    }
+    .contact h2 { font-size: 22px; margin-bottom: 8px; }
+    .contact > p { font-size: 15px; opacity: 0.85; margin-bottom: 24px; }
+    .contact-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .contact-phone:hover { background: rgba(255,255,255,0.25); }
+    .contact-phone .material-symbols-rounded { font-size: 22px; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Lang switching */
+    [data-lang="ro"] { display: none; }
+    body.lang-ro [data-lang="ro"] { display: revert; }
+    body.lang-ro [data-lang="en"] { display: none; }
+
+    /* ── Tablet (600px+) ── */
+    @media (min-width: 600px) {
+      .hero { padding: 100px 24px 140px; }
+      .hero h1 { font-size: 36px; }
+      .hero .tagline { font-size: 18px; }
+
+      .hero-card {
+        max-width: 500px;
+        margin-top: -80px;
+      }
+
+      .container { max-width: 800px; padding: 0 32px; }
+      .section { padding: 56px 0; }
+      .section-header h2 { font-size: 26px; }
+
+      .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .benefit-card { padding: 24px; }
+      .benefit-icon { width: 48px; height: 48px; }
+      .benefit-icon .material-symbols-rounded { font-size: 26px; }
+
+      .contact h2 { font-size: 26px; }
+    }
+
+    /* ── Desktop (960px+) ── */
+    @media (min-width: 960px) {
+      .hero { padding: 120px 32px 160px; }
+      .hero h1 { font-size: 44px; }
+      .hero .tagline { font-size: 19px; max-width: 540px; }
+      .hero-icon .material-symbols-rounded { font-size: 72px; }
+
+      .hero-card {
+        max-width: 640px;
+        margin-top: -100px;
+        transition: transform 0.3s;
+      }
+      .hero-card:hover {
+        transform: translateY(-4px) scale(1.01);
+      }
+
+      .container { max-width: 960px; padding: 0 40px; }
+      .section { padding: 64px 0; }
+      .section-header { margin-bottom: 40px; }
+      .section-header h2 { font-size: 30px; }
+
+      .benefits-grid { gap: 20px; }
+      .benefit-card {
+        padding: 28px;
+        gap: 18px;
+        transition: box-shadow 0.2s, transform 0.2s;
+      }
+      .benefit-card:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+      }
+      .benefit-icon { width: 52px; height: 52px; border-radius: 14px; }
+      .benefit-icon .material-symbols-rounded { font-size: 28px; }
+      .benefit-content h3 { font-size: 16px; }
+      .benefit-content p { font-size: 15px; }
+
+      .steps { gap: 24px; }
+      .step-content h3 { font-size: 16px; }
+      .step-content p { font-size: 15px; }
+
+      .contact { padding: 64px 32px; }
+      .contact h2 { font-size: 30px; }
+      .contact > p { font-size: 16px; }
+
+      .divider { max-width: 960px; }
+    }
+
+    /* ── Wide desktop (1200px+) ── */
+    @media (min-width: 1200px) {
+      .container { max-width: 1080px; }
+      .divider { max-width: 1080px; }
+
+      .hero h1 { font-size: 48px; }
+      .hero .tagline { font-size: 20px; max-width: 600px; }
+
+      .hero-card {
+        max-width: 720px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- OPTION 4: Hero Card Inset -->
+
+  <!-- Top banner -->
+  <div class="top-banner">
+    <span class="material-symbols-rounded">science</span>
+    <span data-lang="en">Currently in clinical trials</span>
+    <span data-lang="ro">In curs de testare clinică</span>
+  </div>
+
+  <!-- Language toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-ro" onclick="setLang('ro')">RO</button>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-icon"><span class="material-symbols-rounded">health_and_safety</span></div>
+    <h1 data-lang="en">Mela Health</h1>
+    <h1 data-lang="ro">Mela Health</h1>
+    <p class="tagline" data-lang="en">AI-powered food safety for people with chronic conditions. Eat smarter, live healthier.</p>
+    <p class="tagline" data-lang="ro">Siguranță alimentară bazată pe AI pentru persoanele cu boli cronice. Mănâncă mai inteligent, trăiește mai sănătos.</p>
+    <div class="name-origin" data-lang="en">
+      <em>Me</em>dical <em>L</em>ifestyle <em>A</em>ssistant
+    </div>
+    <div class="name-origin" data-lang="ro">
+      <em>Me</em>dical <em>L</em>ifestyle <em>A</em>ssistant
+    </div>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="hero-card">
+    <img src="main.png" alt="Healthy meal with health monitoring devices">
+  </div>
+
+  <!-- APP SHOWCASE -->
+  <div class="showcase">
+    <div class="section-header">
+      <h2 data-lang="en">See It in Action</h2>
+      <h2 data-lang="ro">Vezi cum funcționează</h2>
+      <p data-lang="en">A walkthrough of the Mela Health experience</p>
+      <p data-lang="ro">O prezentare a experienței Mela Health</p>
+    </div>
+    <div class="showcase-scroll">
+      <div class="showcase-item">
+        <img src="img3.png" alt="Medical Profile screen" loading="lazy">
+        <div class="showcase-caption" data-lang="en">Your Medical Profile</div>
+        <div class="showcase-caption" data-lang="ro">Profilul tău medical</div>
+        <div class="showcase-subcaption" data-lang="en">Add conditions, allergies & meds</div>
+        <div class="showcase-subcaption" data-lang="ro">Adaugă afecțiuni, alergii și medicamente</div>
+      </div>
+      <div class="showcase-item">
+        <img src="img1.png" alt="Home screen with food scanning" loading="lazy">
+        <div class="showcase-caption" data-lang="en">Scan Your Food</div>
+        <div class="showcase-caption" data-lang="ro">Scanează alimentele</div>
+        <div class="showcase-subcaption" data-lang="en">Photo or text — instant safety ratings</div>
+        <div class="showcase-subcaption" data-lang="ro">Foto sau text — evaluări instant</div>
+      </div>
+      <div class="showcase-item">
+        <img src="img2.png" alt="Substance tracker screen" loading="lazy">
+        <div class="showcase-caption" data-lang="en">Track Substances</div>
+        <div class="showcase-caption" data-lang="ro">Monitorizează substanțele</div>
+        <div class="showcase-subcaption" data-lang="en">Sodium, potassium, phosphorus & more</div>
+        <div class="showcase-subcaption" data-lang="ro">Sodiu, potasiu, fosfor și altele</div>
+      </div>
+      <div class="showcase-item">
+        <img src="img1_1.png" alt="Smart meal suggestions screen" loading="lazy">
+        <div class="showcase-caption" data-lang="en">Smart Suggestions</div>
+        <div class="showcase-caption" data-lang="ro">Sugestii inteligente</div>
+        <div class="showcase-subcaption" data-lang="en">AI recommends safe meals for you</div>
+        <div class="showcase-subcaption" data-lang="ro">AI-ul recomandă mese sigure pentru tine</div>
+      </div>
+      <div class="showcase-item">
+        <img src="img5.png" alt="Google Fit activity screen" loading="lazy">
+        <div class="showcase-caption" data-lang="en">Activity Tracking</div>
+        <div class="showcase-caption" data-lang="ro">Monitorizare activitate</div>
+        <div class="showcase-subcaption" data-lang="en">Google Fit syncs your real activity</div>
+        <div class="showcase-subcaption" data-lang="ro">Google Fit sincronizează activitatea ta</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-lang="en">Why Use Mela Health?</h2>
+        <h2 data-lang="ro">De ce să folosești Mela Health?</h2>
+        <p data-lang="en">Built for people with medical conditions who need to watch what they eat</p>
+        <p data-lang="ro">Creat pentru persoanele cu afecțiuni medicale care trebuie să fie atente la alimentație</p>
+      </div>
+
+      <div class="benefits-grid">
+
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">photo_camera</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Instant Food Scanning</h3>
+            <h3 data-lang="ro">Scanare instantă a alimentelor</h3>
+            <p data-lang="en">Take a photo of your food or type what you're eating. AI analyzes it in seconds against your medical profile.</p>
+            <p data-lang="ro">Fotografiază mâncarea sau scrie ce mănânci. AI-ul o analizează în câteva secunde în raport cu profilul tău medical.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">verified_user</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Personalized Safety Ratings</h3>
+            <h3 data-lang="ro">Evaluări de siguranță personalizate</h3>
+            <p data-lang="en">Every food gets a safety rating (Safe, Caution, Avoid) based on your specific conditions, allergies, and medications.</p>
+            <p data-lang="ro">Fiecare aliment primește un rating de siguranță (Sigur, Precauție, Evită) bazat pe afecțiunile, alergiile și medicamentele tale.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">monitoring</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Daily Substance Tracking</h3>
+            <h3 data-lang="ro">Monitorizare zilnică a substanțelor</h3>
+            <p data-lang="en">Track sodium, potassium, sugar, and other critical substances throughout the day. See exactly how close you are to your limits.</p>
+            <p data-lang="ro">Urmărește sodiul, potasiul, zahărul și alte substanțe critice pe parcursul zilei. Vezi exact cât de aproape ești de limite.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">medication</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Drug-Food Interaction Alerts</h3>
+            <h3 data-lang="ro">Alerte de interacțiuni medicamente-alimente</h3>
+            <p data-lang="en">Automatically detects dangerous interactions between your medications and the food you eat. Stay safe without memorizing complex lists.</p>
+            <p data-lang="ro">Detectează automat interacțiunile periculoase dintre medicamentele tale și alimentele consumate. Fii în siguranță fără să memorezi liste complexe.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">directions_run</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Google Fit Integration</h3>
+            <h3 data-lang="ro">Integrare Google Fit</h3>
+            <p data-lang="en">Connects to Google Fit to adjust your nutritional limits based on your actual activity — steps, calories burned, cycling, sleep.</p>
+            <p data-lang="ro">Se conectează la Google Fit pentru a-ți ajusta limitele nutriționale în funcție de activitatea reală — pași, calorii arse, ciclism, somn.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">restaurant</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Smart Meal Suggestions</h3>
+            <h3 data-lang="ro">Sugestii inteligente de mese</h3>
+            <p data-lang="en">When you're over your limit, get AI-powered suggestions for what you can safely eat for the rest of the day.</p>
+            <p data-lang="ro">Când depășești limita, primești sugestii bazate pe AI despre ce poți mânca în siguranță pentru restul zilei.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">upload_file</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Medical Document Upload</h3>
+            <h3 data-lang="ro">Încărcare documente medicale</h3>
+            <p data-lang="en">Upload prescriptions, lab results, or discharge summaries. AI extracts your conditions, allergies, and medications automatically.</p>
+            <p data-lang="ro">Încarcă rețete, analize de laborator sau scrisori de externare. AI-ul extrage automat afecțiunile, alergiile și medicamentele tale.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">smartphone</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Works on Any Phone</h3>
+            <h3 data-lang="ro">Funcționează pe orice telefon</h3>
+            <p data-lang="en">No app store needed. Works directly in your browser as a mobile-friendly web app. Use the camera or just type.</p>
+            <p data-lang="ro">Nu e nevoie de magazin de aplicații. Funcționează direct în browser ca aplicație web optimizată pentru mobil. Folosește camera sau doar tastează.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-lang="en">How It Works</h2>
+        <h2 data-lang="ro">Cum funcționează</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3 data-lang="en">Set up your medical profile</h3>
+            <h3 data-lang="ro">Configurează-ți profilul medical</h3>
+            <p data-lang="en">Add your conditions, allergies, and medications — manually or by uploading medical documents.</p>
+            <p data-lang="ro">Adaugă afecțiunile, alergiile și medicamentele — manual sau prin încărcarea documentelor medicale.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3 data-lang="en">Scan or type your food</h3>
+            <h3 data-lang="ro">Scanează sau scrie ce mănânci</h3>
+            <p data-lang="en">Take a photo of your meal or type the food name and quantity. Works with any food.</p>
+            <p data-lang="ro">Fotografiază masa sau scrie denumirea și cantitatea alimentului. Funcționează cu orice aliment.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3 data-lang="en">Get instant analysis</h3>
+            <h3 data-lang="ro">Primește analiza instantanee</h3>
+            <p data-lang="en">See safety rating, warnings, drug interactions, and recommendations — all personalized to your health profile.</p>
+            <p data-lang="ro">Vezi ratingul de siguranță, avertismentele, interacțiunile cu medicamente și recomandările — toate personalizate pentru profilul tău de sănătate.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3 data-lang="en">Track your daily intake</h3>
+            <h3 data-lang="ro">Urmărește consumul zilnic</h3>
+            <p data-lang="en">Monitor your substance intake throughout the day and get smart suggestions when you're approaching limits.</p>
+            <p data-lang="ro">Monitorizează consumul de substanțe pe parcursul zilei și primește sugestii inteligente când te apropii de limite.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHO IS IT FOR -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-lang="en">Who Is It For?</h2>
+        <h2 data-lang="ro">Pentru cine este?</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">nephrology</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Kidney Disease</h3>
+            <h3 data-lang="ro">Boli renale</h3>
+            <p data-lang="en">Track sodium, potassium, and phosphorus to protect your kidneys.</p>
+            <p data-lang="ro">Urmărește sodiul, potasiul și fosforul pentru a-ți proteja rinichii.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">bloodtype</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Diabetes</h3>
+            <h3 data-lang="ro">Diabet</h3>
+            <p data-lang="en">Monitor sugar and carbohydrate intake throughout the day.</p>
+            <p data-lang="ro">Monitorizează consumul de zahăr și carbohidrați pe parcursul zilei.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">cardiology</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Heart Disease</h3>
+            <h3 data-lang="ro">Boli cardiace</h3>
+            <p data-lang="en">Keep saturated fat, cholesterol, and sodium under control.</p>
+            <p data-lang="ro">Menține grăsimile saturate, colesterolul și sodiul sub control.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><span class="material-symbols-rounded">warning</span></div>
+          <div class="benefit-content">
+            <h3 data-lang="en">Allergies & Intolerances</h3>
+            <h3 data-lang="ro">Alergii și intoleranțe</h3>
+            <p data-lang="en">Get warnings before eating something that could trigger a reaction.</p>
+            <p data-lang="ro">Primește avertismente înainte de a mânca ceva ce ar putea declanșa o reacție.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact">
+    <h2 data-lang="en">Contact</h2>
+    <h2 data-lang="ro">Contact</h2>
+    <p data-lang="en">For commercial inquiries</p>
+    <p data-lang="ro">Pentru solicitări comerciale</p>
+    <a class="contact-phone" href="tel:+40721910503">
+      <span class="material-symbols-rounded">phone</span>
+      +40 721 910 503
+    </a>
+  </div>
+
+  <div class="footer">
+    <span data-lang="en">Mela Health — Your personal food safety assistant</span>
+    <span data-lang="ro">Mela Health — Asistentul tău personal pentru siguranța alimentară</span>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.body.className = lang === 'ro' ? 'lang-ro' : '';
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-ro').classList.toggle('active', lang === 'ro');
+      document.documentElement.lang = lang;
+      localStorage.setItem('mela-lang', lang);
+    }
+
+    // Auto-detect Romanian browser language
+    const saved = localStorage.getItem('mela-lang');
+    if (saved) {
+      setLang(saved);
+    } else if (navigator.language.startsWith('ro')) {
+      setLang('ro');
+    }
+  </script>
+
+</body>
+</html>

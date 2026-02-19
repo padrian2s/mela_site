@@ -88,41 +88,50 @@
 
     /* Hero */
     .hero {
-      text-align: center;
-      padding: 80px 20px 48px;
-      background: linear-gradient(135deg, var(--primary-light) 0%, var(--bg) 100%);
+      position: relative;
+      padding: 100px 20px 60px;
+      background: url('main.png') right center/cover no-repeat;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
     }
-    .hero-icon {
-      margin-bottom: 16px;
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.1) 100%);
     }
-    .hero-icon .material-symbols-rounded {
-      font-size: 64px;
-      color: var(--primary);
+    .hero > * {
+      position: relative;
+    }
+    .hero-text {
+      max-width: 420px;
+      text-align: left;
     }
     .hero h1 {
       font-size: 28px;
       font-weight: 800;
-      color: var(--primary-dark);
+      color: #ffffff;
       margin-bottom: 8px;
     }
     .hero .tagline {
       font-size: 16px;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.85);
       max-width: 480px;
-      margin: 0 auto;
+      margin: 0;
     }
     .hero .name-origin {
       display: inline-block;
       margin-top: 20px;
       padding: 10px 20px;
-      background: rgba(255,255,255,0.7);
+      background: rgba(0,0,0,0.3);
       border-radius: 20px;
       font-size: 14px;
-      color: var(--text-secondary);
+      color: #ffffff;
       line-height: 1.5;
     }
     .name-origin em {
-      color: var(--primary-dark);
+      color: #86efac;
       font-style: italic;
       font-weight: 600;
     }
@@ -346,9 +355,23 @@
     body.lang-ro [data-lang="ro"] { display: revert; }
     body.lang-ro [data-lang="en"] { display: none; }
 
+    /* ── Mobile hero responsive ── */
+    @media (max-width: 599px) {
+      .hero {
+        min-height: 350px;
+      }
+      .hero-text {
+        max-width: 300px;
+      }
+      .hero::before {
+        background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.1) 100%);
+      }
+    }
+
     /* ── Tablet (600px+) ── */
     @media (min-width: 600px) {
-      .hero { padding: 100px 24px 56px; }
+      .hero { padding: 120px 32px 72px; min-height: 420px; }
+      .hero-text { max-width: 400px; }
       .hero h1 { font-size: 36px; }
       .hero .tagline { font-size: 18px; }
 
@@ -369,10 +392,10 @@
 
     /* ── Desktop (960px+) ── */
     @media (min-width: 960px) {
-      .hero { padding: 120px 32px 64px; }
+      .hero { padding: 140px 40px 80px; min-height: 480px; }
+      .hero-text { max-width: 480px; }
       .hero h1 { font-size: 44px; }
       .hero .tagline { font-size: 19px; max-width: 540px; }
-      .hero-icon .material-symbols-rounded { font-size: 72px; }
 
       .container { max-width: 960px; padding: 0 40px; }
       .section { padding: 64px 0; }
@@ -407,15 +430,19 @@
 
     /* ── Wide desktop (1200px+) ── */
     @media (min-width: 1200px) {
-      .container { max-width: 1080px; }
-      .divider { max-width: 1080px; }
-
+      .hero { min-height: 520px; }
+      .hero-text { max-width: 520px; }
       .hero h1 { font-size: 48px; }
       .hero .tagline { font-size: 20px; max-width: 600px; }
+
+      .container { max-width: 1080px; }
+      .divider { max-width: 1080px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- OPTION 1: Hero Background — Text Left -->
 
   <!-- Top banner -->
   <div class="top-banner">
@@ -432,16 +459,17 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-icon"><span class="material-symbols-rounded">health_and_safety</span></div>
-    <h1 data-lang="en">Mela Health</h1>
-    <h1 data-lang="ro">Mela Health</h1>
-    <p class="tagline" data-lang="en">AI-powered food safety for people with chronic conditions. Eat smarter, live healthier.</p>
-    <p class="tagline" data-lang="ro">Siguranță alimentară bazată pe AI pentru persoanele cu boli cronice. Mănâncă mai inteligent, trăiește mai sănătos.</p>
-    <div class="name-origin" data-lang="en">
-      <em>Me</em>dical <em>L</em>ifestyle <em>A</em>ssistant
-    </div>
-    <div class="name-origin" data-lang="ro">
-      <em>Me</em>dical <em>L</em>ifestyle <em>A</em>ssistant
+    <div class="hero-text">
+      <h1 data-lang="en">Mela Health</h1>
+      <h1 data-lang="ro">Mela Health</h1>
+      <p class="tagline" data-lang="en">AI-powered food safety for people with chronic conditions. Eat smarter, live healthier.</p>
+      <p class="tagline" data-lang="ro">Siguranță alimentară bazată pe AI pentru persoanele cu boli cronice. Mănâncă mai inteligent, trăiește mai sănătos.</p>
+      <div class="name-origin" data-lang="en">
+        <em>Me</em>dical <em>L</em>ifestyle <em>A</em>ssistant
+      </div>
+      <div class="name-origin" data-lang="ro">
+        <em>Me</em>dical <em>L</em>ifestyle <em>A</em>ssistant
+      </div>
     </div>
   </div>
 
