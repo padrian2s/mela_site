@@ -3,95 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#16a34a">
+  <meta name="theme-color" content="#000000">
   <title>Mela Health — Benefits</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍏</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
   <style>
     :root {
-      --primary: #16a34a;
-      --primary-light: #dcfce7;
-      --primary-dark: #15803d;
-      --text: #1a1a1a;
-      --text-secondary: #6b7280;
-      --bg: #f8faf9;
-      --surface: #ffffff;
-      --border: #e5e7eb;
-      --radius: 12px;
-      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --primary: #22c55e;
+      --primary-light: rgba(34,197,94,0.08);
+      --primary-dark: #16a34a;
+      --text: #1d1d1f;
+      --text-secondary: #86868b;
+      --bg: #ffffff;
+      --bg-dark: #000000;
+      --surface: #f5f5f7;
+      --border: transparent;
+      --radius: 20px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
       color: var(--text);
       background: var(--bg);
       -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .material-symbols-rounded {
       font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
 
-    /* Top banner */
+    /* ── Scroll animations ── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children */
+    .stagger-children .animate-on-scroll:nth-child(1) { transition-delay: 0s; }
+    .stagger-children .animate-on-scroll:nth-child(2) { transition-delay: 0.08s; }
+    .stagger-children .animate-on-scroll:nth-child(3) { transition-delay: 0.16s; }
+    .stagger-children .animate-on-scroll:nth-child(4) { transition-delay: 0.24s; }
+    .stagger-children .animate-on-scroll:nth-child(5) { transition-delay: 0.32s; }
+    .stagger-children .animate-on-scroll:nth-child(6) { transition-delay: 0.4s; }
+    .stagger-children .animate-on-scroll:nth-child(7) { transition-delay: 0.48s; }
+    .stagger-children .animate-on-scroll:nth-child(8) { transition-delay: 0.56s; }
+
+    /* ── Top banner ── */
     .top-banner {
-      background: #fef3c7;
-      border-bottom: 1px solid #fde68a;
+      background: #1d1d1f;
       text-align: center;
-      padding: 8px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #92400e;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
+      letter-spacing: 0.01em;
     }
     .top-banner .material-symbols-rounded {
-      font-size: 16px;
-      color: #b45309;
+      font-size: 14px;
+      color: var(--primary);
     }
 
-    /* Language toggle */
+    /* ── Language toggle ── */
     .lang-toggle {
       position: fixed;
-      top: 46px;
+      top: 50px;
       right: 16px;
       z-index: 100;
       display: flex;
-      background: var(--surface);
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-radius: 20px;
-      box-shadow: var(--shadow-md);
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: none;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
     .lang-btn {
       padding: 6px 14px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       border: none;
       background: transparent;
       color: var(--text-secondary);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
     }
     .lang-btn.active {
-      background: var(--primary);
+      background: var(--text);
       color: #fff;
     }
 
-    /* Hero */
+    /* ── Hero ── */
     .hero {
       position: relative;
       padding: 100px 20px 60px;
       background: url('main.png') right center/cover no-repeat;
-      min-height: 400px;
+      min-height: 500px;
       display: flex;
       align-items: center;
     }
@@ -99,150 +142,195 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.1) 100%);
+      background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.05) 100%);
     }
     .hero > * {
       position: relative;
     }
     .hero-text {
-      max-width: 420px;
+      max-width: 480px;
       text-align: left;
+      padding-left: 5%;
     }
     .hero h1 {
-      font-size: 28px;
-      font-weight: 800;
+      font-size: 36px;
+      font-weight: 700;
       color: #ffffff;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
     }
     .hero .tagline {
-      font-size: 16px;
-      color: rgba(255,255,255,0.85);
+      font-size: 17px;
+      color: rgba(255,255,255,0.75);
       max-width: 480px;
       margin: 0;
+      font-weight: 400;
+      line-height: 1.6;
     }
     .hero .name-origin {
       display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 20px;
+      margin-top: 24px;
       font-size: 14px;
-      color: #ffffff;
+      color: rgba(255,255,255,0.5);
       line-height: 1.5;
+      font-weight: 400;
+      letter-spacing: 0.02em;
     }
     .name-origin em {
-      color: #86efac;
-      font-style: italic;
+      color: var(--primary);
+      font-style: normal;
       font-weight: 600;
     }
 
-    /* Container */
+    /* ── Container ── */
     .container {
-      max-width: 720px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* Section */
+    /* ── Sections ── */
     .section {
-      padding: 40px 0;
+      padding: 80px 0;
     }
     .section-header {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 48px;
     }
     .section-header h2 {
-      font-size: 22px;
-      font-weight: 700;
+      font-size: 32px;
+      font-weight: 600;
       color: var(--text);
       margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
     .section-header p {
       color: var(--text-secondary);
-      font-size: 15px;
+      font-size: 17px;
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    /* Benefit cards */
+    /* Dark section variants */
+    .section-dark {
+      background: var(--bg-dark);
+    }
+    .section-dark .section-header h2 {
+      color: #f5f5f7;
+    }
+    .section-dark .section-header p {
+      color: #86868b;
+    }
+
+    /* ── Benefit cards ── */
     .benefits-grid {
       display: grid;
-      gap: 12px;
+      gap: 16px;
     }
     .benefit-card {
       background: var(--surface);
       border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+      padding: 28px;
+      border: none;
+      box-shadow: none;
       display: flex;
-      gap: 14px;
+      gap: 16px;
       align-items: flex-start;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .benefit-card:hover {
+      transform: scale(1.02);
     }
     .benefit-icon {
       flex-shrink: 0;
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: var(--primary-light);
-      border-radius: 12px;
+      border-radius: 14px;
     }
     .benefit-icon .material-symbols-rounded {
       font-size: 24px;
       color: var(--primary);
     }
     .benefit-content h3 {
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 600;
       margin-bottom: 4px;
+      color: var(--text);
+      letter-spacing: -0.01em;
     }
     .benefit-content p {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-secondary);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    /* How it works */
+    /* "Who is it for" dark card variant */
+    .section-dark .benefit-card {
+      background: #1d1d1f;
+    }
+    .section-dark .benefit-card .benefit-content h3 {
+      color: #f5f5f7;
+    }
+    .section-dark .benefit-card .benefit-content p {
+      color: #86868b;
+    }
+    .section-dark .benefit-icon {
+      background: rgba(34,197,94,0.12);
+    }
+
+    /* ── How it works ── */
     .steps {
       display: grid;
-      gap: 20px;
-      counter-reset: step;
+      gap: 40px;
+      max-width: 640px;
+      margin: 0 auto;
     }
     .step {
       display: flex;
-      gap: 16px;
+      gap: 24px;
       align-items: flex-start;
     }
     .step-num {
-      counter-increment: step;
-      width: 36px;
-      height: 36px;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 15px;
       flex-shrink: 0;
+      font-size: 48px;
+      font-weight: 700;
+      color: #d1d1d6;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      min-width: 56px;
     }
     .step-content h3 {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 2px;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
     }
     .step-content p {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-secondary);
+      line-height: 1.6;
     }
 
-    /* Showcase */
+    /* ── Showcase ── */
     .showcase {
-      padding: 40px 0;
-      background: linear-gradient(180deg, var(--bg) 0%, var(--primary-light) 50%, var(--bg) 100%);
+      padding: 80px 0;
+      background: var(--bg-dark);
     }
-    .showcase .section-header { margin-bottom: 32px; }
+    .showcase .section-header {
+      margin-bottom: 48px;
+    }
+    .showcase .section-header h2 {
+      color: #f5f5f7;
+    }
+    .showcase .section-header p {
+      color: #86868b;
+    }
     .showcase-scroll {
       display: flex;
       gap: 24px;
@@ -254,195 +342,207 @@
     }
     .showcase-scroll::-webkit-scrollbar { display: none; }
     .showcase-item {
-      flex: 0 0 200px;
+      flex: 0 0 220px;
       scroll-snap-align: center;
       text-align: center;
     }
     .showcase-item img {
-      width: 200px;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
-      border: 3px solid var(--surface);
+      width: 220px;
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      border: none;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .showcase-item img:hover {
+      transform: translateY(-8px) scale(1.03);
     }
     .showcase-caption {
-      margin-top: 12px;
-      font-size: 13px;
+      margin-top: 16px;
+      font-size: 14px;
       font-weight: 600;
-      color: var(--text);
+      color: #f5f5f7;
     }
     .showcase-subcaption {
       font-size: 12px;
-      color: var(--text-secondary);
-      margin-top: 2px;
+      color: #86868b;
+      margin-top: 4px;
     }
 
-    @media (min-width: 600px) {
-      .showcase-scroll {
-        justify-content: center;
-        flex-wrap: wrap;
-        overflow-x: visible;
-        padding: 0 32px 0;
-        gap: 28px;
-      }
-      .showcase-item { flex: 0 0 180px; }
-      .showcase-item img { width: 180px; }
-    }
-
-    @media (min-width: 960px) {
-      .showcase { padding: 64px 0; }
-      .showcase-scroll {
-        gap: 36px;
-        padding: 0 40px;
-      }
-      .showcase-item { flex: 0 0 200px; }
-      .showcase-item img {
-        width: 200px;
-        transition: transform 0.3s;
-      }
-      .showcase-item img:hover { transform: translateY(-6px) scale(1.02); }
-      .showcase-caption { font-size: 14px; }
-      .showcase-subcaption { font-size: 13px; }
-    }
-
-    @media (min-width: 1200px) {
-      .showcase-item { flex: 0 0 220px; }
-      .showcase-item img { width: 220px; }
-    }
-
-    /* Contact */
+    /* ── Contact ── */
     .contact {
       text-align: center;
-      padding: 48px 20px;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #15803d, #22c55e);
       color: #fff;
     }
-    .contact h2 { font-size: 22px; margin-bottom: 8px; }
-    .contact > p { font-size: 15px; opacity: 0.85; margin-bottom: 24px; }
+    .contact h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .contact > p {
+      font-size: 17px;
+      opacity: 0.8;
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
     .contact-phone {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 14px 28px;
+      padding: 16px 32px;
       background: rgba(255,255,255,0.15);
-      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 14px;
       color: #fff;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 600;
-      transition: background 0.2s;
+      transition: background 0.3s ease;
+      letter-spacing: -0.01em;
     }
     .contact-phone:hover { background: rgba(255,255,255,0.25); }
     .contact-phone .material-symbols-rounded { font-size: 22px; }
 
-    /* Footer */
+    /* ── Footer ── */
     .footer {
       text-align: center;
       padding: 32px 20px;
-      font-size: 13px;
-      color: var(--text-secondary);
+      font-size: 12px;
+      color: #86868b;
+      background: var(--bg);
     }
 
-    /* Divider */
-    .divider {
-      height: 1px;
-      background: var(--border);
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    /* Lang switching */
+    /* ── Lang switching ── */
     [data-lang="ro"] { display: none; }
     body.lang-ro [data-lang="ro"] { display: revert; }
     body.lang-ro [data-lang="en"] { display: none; }
 
-    /* ── Mobile hero responsive ── */
+    /* ═══════════════════════════════════════════════ */
+    /* ── RESPONSIVE BREAKPOINTS ──                   */
+    /* ═══════════════════════════════════════════════ */
+
+    /* Mobile (<600px) */
     @media (max-width: 599px) {
       .hero {
-        min-height: 350px;
+        min-height: 420px;
       }
       .hero-text {
-        max-width: 300px;
+        max-width: 320px;
+        padding-left: 0;
       }
       .hero::before {
-        background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.1) 100%);
+        background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.1) 100%);
       }
     }
 
-    /* ── Tablet (600px+) ── */
+    /* Tablet (600px+) */
     @media (min-width: 600px) {
-      .hero { padding: 120px 32px 72px; min-height: 420px; }
-      .hero-text { max-width: 400px; }
-      .hero h1 { font-size: 36px; }
+      .hero {
+        padding: 120px 32px 80px;
+        min-height: 500px;
+      }
+      .hero-text { max-width: 440px; }
+      .hero h1 { font-size: 44px; }
       .hero .tagline { font-size: 18px; }
 
-      .container { max-width: 800px; padding: 0 32px; }
-      .section { padding: 56px 0; }
-      .section-header h2 { font-size: 26px; }
+      .container { padding: 0 32px; }
+      .section { padding: 100px 0; }
+      .section-header h2 { font-size: 36px; }
+      .section-header { margin-bottom: 56px; }
 
       .benefits-grid {
         grid-template-columns: 1fr 1fr;
         gap: 16px;
       }
-      .benefit-card { padding: 24px; }
-      .benefit-icon { width: 48px; height: 48px; }
+      .benefit-card { padding: 28px; }
+      .benefit-icon { width: 52px; height: 52px; }
       .benefit-icon .material-symbols-rounded { font-size: 26px; }
 
-      .contact h2 { font-size: 26px; }
+      .showcase { padding: 100px 0; }
+      .showcase-scroll {
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow-x: visible;
+        padding: 0 32px 0;
+        gap: 32px;
+      }
+      .showcase-item { flex: 0 0 200px; }
+      .showcase-item img { width: 200px; }
+
+      .contact { padding: 100px 32px; }
+      .contact h2 { font-size: 36px; }
     }
 
-    /* ── Desktop (960px+) ── */
+    /* Desktop (960px+) */
     @media (min-width: 960px) {
-      .hero { padding: 140px 40px 80px; min-height: 480px; }
-      .hero-text { max-width: 480px; }
-      .hero h1 { font-size: 44px; }
-      .hero .tagline { font-size: 19px; max-width: 540px; }
+      .hero {
+        padding: 160px 60px 100px;
+        min-height: 600px;
+      }
+      .hero-text {
+        max-width: 520px;
+        padding-left: 5%;
+      }
+      .hero h1 { font-size: 52px; }
+      .hero .tagline { font-size: 20px; max-width: 540px; }
 
-      .container { max-width: 960px; padding: 0 40px; }
-      .section { padding: 64px 0; }
-      .section-header { margin-bottom: 40px; }
-      .section-header h2 { font-size: 30px; }
+      .container { max-width: 980px; padding: 0 40px; }
+      .section { padding: 120px 0; }
+      .section-header h2 { font-size: 40px; }
+      .section-header { margin-bottom: 64px; }
 
       .benefits-grid { gap: 20px; }
       .benefit-card {
-        padding: 28px;
-        gap: 18px;
-        transition: box-shadow 0.2s, transform 0.2s;
+        padding: 32px;
+        gap: 20px;
       }
-      .benefit-card:hover {
-        box-shadow: var(--shadow-md);
-        transform: translateY(-2px);
-      }
-      .benefit-icon { width: 52px; height: 52px; border-radius: 14px; }
+      .benefit-icon { width: 56px; height: 56px; border-radius: 16px; }
       .benefit-icon .material-symbols-rounded { font-size: 28px; }
-      .benefit-content h3 { font-size: 16px; }
+      .benefit-content h3 { font-size: 17px; }
       .benefit-content p { font-size: 15px; }
 
-      .steps { gap: 24px; }
-      .step-content h3 { font-size: 16px; }
-      .step-content p { font-size: 15px; }
+      .steps { gap: 48px; }
+      .step-num { font-size: 56px; min-width: 64px; }
+      .step-content h3 { font-size: 18px; }
+      .step-content p { font-size: 16px; }
 
-      .contact { padding: 64px 32px; }
-      .contact h2 { font-size: 30px; }
-      .contact > p { font-size: 16px; }
+      .showcase { padding: 120px 0; }
+      .showcase-scroll {
+        gap: 40px;
+        padding: 0 40px;
+      }
+      .showcase-item { flex: 0 0 240px; }
+      .showcase-item img { width: 240px; }
+      .showcase-caption { font-size: 15px; }
+      .showcase-subcaption { font-size: 13px; }
 
-      .divider { max-width: 960px; }
+      .contact { padding: 120px 40px; }
+      .contact h2 { font-size: 40px; }
+      .contact > p { font-size: 18px; }
     }
 
-    /* ── Wide desktop (1200px+) ── */
+    /* Wide desktop (1200px+) */
     @media (min-width: 1200px) {
-      .hero { min-height: 520px; }
-      .hero-text { max-width: 520px; }
-      .hero h1 { font-size: 48px; }
-      .hero .tagline { font-size: 20px; max-width: 600px; }
+      .hero { min-height: 660px; }
+      .hero-text { max-width: 560px; }
+      .hero h1 { font-size: 56px; }
+      .hero .tagline { font-size: 21px; max-width: 600px; }
 
-      .container { max-width: 1080px; }
-      .divider { max-width: 1080px; }
+      .container { max-width: 980px; }
+      .section { padding: 160px 0; }
+
+      .showcase { padding: 160px 0; }
+      .showcase-item { flex: 0 0 260px; }
+      .showcase-item img { width: 260px; }
+
+      .contact { padding: 160px 40px; }
     }
   </style>
 </head>
 <body>
-
-  <!-- OPTION 1: Hero Background — Text Left -->
 
   <!-- Top banner -->
   <div class="top-banner">
@@ -473,44 +573,44 @@
     </div>
   </div>
 
-  <!-- APP SHOWCASE -->
+  <!-- APP SHOWCASE — dark section -->
   <div class="showcase">
-    <div class="section-header">
+    <div class="section-header animate-on-scroll">
       <h2 data-lang="en">See It in Action</h2>
       <h2 data-lang="ro">Vezi cum funcționează</h2>
       <p data-lang="en">A walkthrough of the Mela Health experience</p>
       <p data-lang="ro">O prezentare a experienței Mela Health</p>
     </div>
-    <div class="showcase-scroll">
-      <div class="showcase-item">
+    <div class="showcase-scroll stagger-children">
+      <div class="showcase-item animate-on-scroll">
         <img src="img3.png" alt="Medical Profile screen" loading="lazy">
         <div class="showcase-caption" data-lang="en">Your Medical Profile</div>
         <div class="showcase-caption" data-lang="ro">Profilul tău medical</div>
         <div class="showcase-subcaption" data-lang="en">Add conditions, allergies & meds</div>
         <div class="showcase-subcaption" data-lang="ro">Adaugă afecțiuni, alergii și medicamente</div>
       </div>
-      <div class="showcase-item">
+      <div class="showcase-item animate-on-scroll">
         <img src="img1.png" alt="Home screen with food scanning" loading="lazy">
         <div class="showcase-caption" data-lang="en">Scan Your Food</div>
         <div class="showcase-caption" data-lang="ro">Scanează alimentele</div>
         <div class="showcase-subcaption" data-lang="en">Photo or text — instant safety ratings</div>
         <div class="showcase-subcaption" data-lang="ro">Foto sau text — evaluări instant</div>
       </div>
-      <div class="showcase-item">
+      <div class="showcase-item animate-on-scroll">
         <img src="img2.png" alt="Substance tracker screen" loading="lazy">
         <div class="showcase-caption" data-lang="en">Track Substances</div>
         <div class="showcase-caption" data-lang="ro">Monitorizează substanțele</div>
         <div class="showcase-subcaption" data-lang="en">Sodium, potassium, phosphorus & more</div>
         <div class="showcase-subcaption" data-lang="ro">Sodiu, potasiu, fosfor și altele</div>
       </div>
-      <div class="showcase-item">
+      <div class="showcase-item animate-on-scroll">
         <img src="img1_1.png" alt="Smart meal suggestions screen" loading="lazy">
         <div class="showcase-caption" data-lang="en">Smart Suggestions</div>
         <div class="showcase-caption" data-lang="ro">Sugestii inteligente</div>
         <div class="showcase-subcaption" data-lang="en">AI recommends safe meals for you</div>
         <div class="showcase-subcaption" data-lang="ro">AI-ul recomandă mese sigure pentru tine</div>
       </div>
-      <div class="showcase-item">
+      <div class="showcase-item animate-on-scroll">
         <img src="img5.png" alt="Google Fit activity screen" loading="lazy">
         <div class="showcase-caption" data-lang="en">Activity Tracking</div>
         <div class="showcase-caption" data-lang="ro">Monitorizare activitate</div>
@@ -523,16 +623,16 @@
   <!-- BENEFITS -->
   <div class="section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header animate-on-scroll">
         <h2 data-lang="en">Why Use Mela Health?</h2>
         <h2 data-lang="ro">De ce să folosești Mela Health?</h2>
         <p data-lang="en">Built for people with medical conditions who need to watch what they eat</p>
         <p data-lang="ro">Creat pentru persoanele cu afecțiuni medicale care trebuie să fie atente la alimentație</p>
       </div>
 
-      <div class="benefits-grid">
+      <div class="benefits-grid stagger-children">
 
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">photo_camera</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Instant Food Scanning</h3>
@@ -542,7 +642,7 @@
           </div>
         </div>
 
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">verified_user</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Personalized Safety Ratings</h3>
@@ -552,7 +652,7 @@
           </div>
         </div>
 
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">monitoring</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Daily Substance Tracking</h3>
@@ -562,7 +662,7 @@
           </div>
         </div>
 
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">medication</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Drug-Food Interaction Alerts</h3>
@@ -572,7 +672,7 @@
           </div>
         </div>
 
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">directions_run</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Google Fit Integration</h3>
@@ -582,7 +682,7 @@
           </div>
         </div>
 
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">restaurant</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Smart Meal Suggestions</h3>
@@ -592,7 +692,7 @@
           </div>
         </div>
 
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">upload_file</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Medical Document Upload</h3>
@@ -602,7 +702,7 @@
           </div>
         </div>
 
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">smartphone</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Works on Any Phone</h3>
@@ -616,19 +716,17 @@
     </div>
   </div>
 
-  <div class="divider"></div>
-
   <!-- HOW IT WORKS -->
-  <div class="section">
+  <div class="section" style="background: var(--surface);">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header animate-on-scroll">
         <h2 data-lang="en">How It Works</h2>
         <h2 data-lang="ro">Cum funcționează</h2>
       </div>
 
       <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
+        <div class="step animate-on-scroll">
+          <div class="step-num">01</div>
           <div class="step-content">
             <h3 data-lang="en">Set up your medical profile</h3>
             <h3 data-lang="ro">Configurează-ți profilul medical</h3>
@@ -636,8 +734,8 @@
             <p data-lang="ro">Adaugă afecțiunile, alergiile și medicamentele — manual sau prin încărcarea documentelor medicale.</p>
           </div>
         </div>
-        <div class="step">
-          <div class="step-num">2</div>
+        <div class="step animate-on-scroll">
+          <div class="step-num">02</div>
           <div class="step-content">
             <h3 data-lang="en">Scan or type your food</h3>
             <h3 data-lang="ro">Scanează sau scrie ce mănânci</h3>
@@ -645,8 +743,8 @@
             <p data-lang="ro">Fotografiază masa sau scrie denumirea și cantitatea alimentului. Funcționează cu orice aliment.</p>
           </div>
         </div>
-        <div class="step">
-          <div class="step-num">3</div>
+        <div class="step animate-on-scroll">
+          <div class="step-num">03</div>
           <div class="step-content">
             <h3 data-lang="en">Get instant analysis</h3>
             <h3 data-lang="ro">Primește analiza instantanee</h3>
@@ -654,8 +752,8 @@
             <p data-lang="ro">Vezi ratingul de siguranță, avertismentele, interacțiunile cu medicamente și recomandările — toate personalizate pentru profilul tău de sănătate.</p>
           </div>
         </div>
-        <div class="step">
-          <div class="step-num">4</div>
+        <div class="step animate-on-scroll">
+          <div class="step-num">04</div>
           <div class="step-content">
             <h3 data-lang="en">Track your daily intake</h3>
             <h3 data-lang="ro">Urmărește consumul zilnic</h3>
@@ -667,16 +765,16 @@
     </div>
   </div>
 
-  <!-- WHO IS IT FOR -->
-  <div class="section">
+  <!-- WHO IS IT FOR — dark section -->
+  <div class="section section-dark">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header animate-on-scroll">
         <h2 data-lang="en">Who Is It For?</h2>
         <h2 data-lang="ro">Pentru cine este?</h2>
       </div>
 
-      <div class="benefits-grid">
-        <div class="benefit-card">
+      <div class="benefits-grid stagger-children">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">nephrology</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Kidney Disease</h3>
@@ -685,7 +783,7 @@
             <p data-lang="ro">Urmărește sodiul, potasiul și fosforul pentru a-ți proteja rinichii.</p>
           </div>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">bloodtype</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Diabetes</h3>
@@ -694,7 +792,7 @@
             <p data-lang="ro">Monitorizează consumul de zahăr și carbohidrați pe parcursul zilei.</p>
           </div>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">cardiology</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Heart Disease</h3>
@@ -703,7 +801,7 @@
             <p data-lang="ro">Menține grăsimile saturate, colesterolul și sodiul sub control.</p>
           </div>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card animate-on-scroll">
           <div class="benefit-icon"><span class="material-symbols-rounded">warning</span></div>
           <div class="benefit-content">
             <h3 data-lang="en">Allergies & Intolerances</h3>
@@ -718,11 +816,11 @@
 
   <!-- Contact -->
   <div class="contact">
-    <h2 data-lang="en">Contact</h2>
-    <h2 data-lang="ro">Contact</h2>
-    <p data-lang="en">For commercial inquiries</p>
-    <p data-lang="ro">Pentru solicitări comerciale</p>
-    <a class="contact-phone" href="tel:+40721910503">
+    <h2 data-lang="en" class="animate-on-scroll">Contact</h2>
+    <h2 data-lang="ro" class="animate-on-scroll">Contact</h2>
+    <p data-lang="en" class="animate-on-scroll">For commercial inquiries</p>
+    <p data-lang="ro" class="animate-on-scroll">Pentru solicitări comerciale</p>
+    <a class="contact-phone animate-on-scroll" href="tel:+40721910503">
       <span class="material-symbols-rounded">phone</span>
       +40 721 910 503
     </a>
@@ -734,6 +832,7 @@
   </div>
 
   <script>
+    // Language toggle
     function setLang(lang) {
       document.body.className = lang === 'ro' ? 'lang-ro' : '';
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
@@ -742,13 +841,29 @@
       localStorage.setItem('mela-lang', lang);
     }
 
-    // Auto-detect Romanian browser language
     const saved = localStorage.getItem('mela-lang');
     if (saved) {
       setLang(saved);
     } else if (navigator.language.startsWith('ro')) {
       setLang('ro');
     }
+
+    // Scroll-triggered animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
   </script>
 
 </body>
